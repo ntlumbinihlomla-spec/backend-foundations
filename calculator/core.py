@@ -1,4 +1,4 @@
-from operations import add, subtract, multiply, divide
+from calculator.operations import add, subtract, multiply, divide
 
 def calculate(choice, a, b):
     if choice == "1":

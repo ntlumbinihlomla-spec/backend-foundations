@@ -1,5 +1,5 @@
 from datetime import datetime
-from core import calculate
+from calculator.core import calculate
 
 LOG_FILE = "logs/calculator.log"
 
