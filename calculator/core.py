@@ -1,13 +1,14 @@
 from calculator.operations import add, subtract, multiply, divide
 
-def calculate(choice, a, b):
-    if choice == "1":
-        return add(a, b), "ADD"
-    elif choice == "2":
-        return subtract(a, b), "SUBTRACT"
-    elif choice == "3":
-        return multiply(a, b), "MULTIPLY"
-    elif choice == "4":
-        return divide(a, b), "DIVIDE"
+
+def calculate(operation, a, b):
+    if operation == "add":
+        return add(a, b)
+    elif operation == "sub":
+        return subtract(a, b)
+    elif operation == "mul":
+        return multiply(a, b)
+    elif operation == "div":
+        return divide(a, b)
     else:
         raise ValueError("Invalid operation")

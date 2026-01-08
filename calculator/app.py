@@ -1,43 +1,19 @@
-from datetime import datetime
+import argparse
 from calculator.core import calculate
 
-LOG_FILE = "logs/calculator.log"
-
-def log(message):
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    with open(LOG_FILE, "a") as file:
-        file.write(f"[{timestamp}] {message}\n")
-
-def get_number(prompt):
-    while True:
-        try:
-            return float(input(prompt))
-        except ValueError:
-            print("Invalid number. Try again.")
 
 def main():
-    print("Calculator")
-    print("1. Add")
-    print("2. Subtract")
-    print("3. Multiply")
-    print("4. Divide")
+    parser = argparse.ArgumentParser(description="Simple CLI Calculator")
 
-    choice = input("Choose an option (1-4): ")
+    parser.add_argument("operation", choices=["add", "sub", "mul", "div"], help="Operation to perform")
+    parser.add_argument("a", type=float, help="First number")
+    parser.add_argument("b", type=float, help="Second number")
 
-    a = get_number("Enter first number: ")
-    b = get_number("Enter second number: ")
+    args = parser.parse_args()
 
-    try:
-        result, operation = calculate(choice, a, b)
-        print(f"Result: {result}")
-        log(f"{operation}: {a} and {b} = {result}")
+    result = calculate(args.operation, args.a, args.b)
+    print(f"Result: {result}")
 
-    except Exception as e:
-        print(f"Error: {e}")
-        log(f"ERROR: {e}")
 
 if __name__ == "__main__":
     main()
-
-
-
