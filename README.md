@@ -1,29 +1,21 @@
-# Backend Foundations – Python Utility Project
+# Backend Foundations — Python CLI Tools
 
-This project is a structured Python utility demonstrating:
+A growing collection of Python command-line tools focused on clean structure, testing, and real-world usability.
 
-- Modular design
-- Defensive input handling
-- Logging
+##  Current Tool: CLI Calculator
+
+A professional command-line calculator built with modular architecture and automated tests.
+
+### Features
+- Command-line interface (argparse)
+- Modular backend structure
+- Error-safe operations
 - Automated tests
-- Command-line usage
+- Clean package imports
 
-It was built step-by-step as a backend and tooling foundation.
+### Example usage
 
----
-
-## 🚀 Features
-
-- Core calculation engine
-- Command-line interface
-- Error handling
-- Persistent logs
-- Automated tests
-
----
-
-## ▶️ How to Run
-
-### Run interactive app
 ```bash
-python -m calculator.app
+python -m calculator.app add 2 3
+python -m calculator.app mul 6 7
+python -m calculator.app div 10 2
