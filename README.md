@@ -1,6 +1,6 @@
-# Backend Foundations — Python CLI Tools
+# Backend Foundations — Python CLI Utility Toolkit
 
-Backend Foundations is a growing portfolio of Python command-line tools built to practice and demonstrate real backend development skills: clean architecture, packaging, testing, and professional workflows.
+A modular backend-style command-line tool for calculations, file processing, and automation tasks.
 
 This repository is part of a structured backend learning path focused on writing production-style Python code rather than scripts.
 
@@ -37,3 +37,7 @@ python -m calculator.app add 2 3
 python -m calculator.app sub 10 4
 python -m calculator.app mul 6 7
 python -m calculator.app div 10 2
+python -m calculator.app add 2 3
+python -m calculator.app time
+python -m calculator.app lines sample.txt
+python -m calculator.app words sample.txt
