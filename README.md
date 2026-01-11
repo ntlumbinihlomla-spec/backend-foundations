@@ -27,10 +27,15 @@ A professional command-line calculator built with a clean, modular architecture.
 - Defensive error handling
 - Automated unit tests
 - Installable Python package structure
+- Calculator commands
+- System time command
+- File line counter
+- File word counter
+- Multi-command CLI tool
 
 ---
 
-## ▶️ Example Usage
+## Example Usage
 
 ```bash
 python -m calculator.app add 2 3
