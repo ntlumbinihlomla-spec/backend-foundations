@@ -1,9 +1,0 @@
-README.md
-pyproject.toml
-setup.py
-backend_foundations.egg-info/PKG-INFO
-backend_foundations.egg-info/SOURCES.txt
-backend_foundations.egg-info/dependency_links.txt
-backend_foundations.egg-info/entry_points.txt
-backend_foundations.egg-info/top_level.txt
-tests/test_core.py
