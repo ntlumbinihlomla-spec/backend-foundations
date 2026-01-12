@@ -33,6 +33,14 @@ A professional command-line calculator built with a clean, modular architecture.
 - File word counter
 - Multi-command CLI tool
 
+### Automation & Data Tools
+
+- JSON pretty printer and key counter
+- CSV row and column analyzer
+- Log file error scanner
+- File statistics tools
+- Modular backend CLI architecture
+
 ---
 
 ## Example Usage
@@ -46,3 +54,7 @@ python -m calculator.app add 2 3
 python -m calculator.app time
 python -m calculator.app lines sample.txt
 python -m calculator.app words sample.txt
+python -m calculator.app calc add 5 7
+python -m calculator.app time
+python -m calculator.app lines test.txt
+python -m calculator.app words test.txt
