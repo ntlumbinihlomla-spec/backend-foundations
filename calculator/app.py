@@ -5,6 +5,7 @@ from calculator.file_tools import count_lines, count_words, count_lines_in_dir
 from calculator.json_tools import pretty_print_json, count_keys
 from calculator.csv_tools import count_rows, count_columns
 from calculator.log_tools import count_errors
+from calculator.finance_tools import summarize_csv_column
 
 
 
@@ -56,6 +57,15 @@ def main():
     log_errors = log_sub.add_parser("errors")
     log_errors.add_argument("file")
 
+    result = summarize_csv_column(args.file, args.column)
+
+    print(f"Rows processed: {result['rows']}")
+    print(f"Total: {result['sum']:.2f}")
+    print(f"Average: {result['average']:.2f}")
+    print(f"Minimum: {result['min']:.2f}")
+    print(f"Maximum: {result['max']:.2f}")
+
+
     args = parser.parse_args()
 
     if args.command == "calc":
@@ -93,6 +103,11 @@ def main():
         if args.action == "errors":
             print("Errors:", count_errors(args.file))
 
+    elif args.command == "finance":
+        if args.action == "summary":
+         result = summarize_csv_column(args.file, args.column)
+         for k, v in result.items():
+            print(f"{k}: {v}")
 
     else:
         parser.print_help()
