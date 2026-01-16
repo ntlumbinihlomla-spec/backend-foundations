@@ -1,7 +1,7 @@
 import argparse
 from calculator.core import calculate
 from calculator.utils import show_time
-from calculator.file_tools import count_lines, count_words
+from calculator.file_tools import count_lines, count_words, count_lines_in_dir
 from calculator.json_tools import pretty_print_json, count_keys
 from calculator.csv_tools import count_rows, count_columns
 from calculator.log_tools import count_errors
@@ -26,6 +26,8 @@ def main():
     # File tools
     lines = subparsers.add_parser("lines", help="Count lines in file")
     lines.add_argument("file")
+    lines_dir = subparsers.add_parser("lines-dir", help="Count lines in all files in a folder")
+    lines_dir.add_argument("folder")
 
     words = subparsers.add_parser("words", help="Count words in file")
     words.add_argument("file")
@@ -65,6 +67,8 @@ def main():
 
     elif args.command == "lines":
         print("Lines:", count_lines(args.file))
+    elif args.command == "lines-dir":
+        print("Total lines:", count_lines_in_dir(args.folder))
 
     elif args.command == "words":
         print("Words:", count_words(args.file))
