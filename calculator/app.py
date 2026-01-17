@@ -57,13 +57,13 @@ def main():
     log_errors = log_sub.add_parser("errors")
     log_errors.add_argument("file")
 
-    result = summarize_csv_column(args.file, args.column)
+    finance = subparsers.add_parser("finance", help="Financial tools")
+    finance_sub = finance.add_subparsers(dest="action")
 
-    print(f"Rows processed: {result['rows']}")
-    print(f"Total: {result['sum']:.2f}")
-    print(f"Average: {result['average']:.2f}")
-    print(f"Minimum: {result['min']:.2f}")
-    print(f"Maximum: {result['max']:.2f}")
+    summary = finance_sub.add_parser("summary", help="Summarize numeric column in CSV")
+    summary.add_argument("file")
+    summary.add_argument("column")
+
 
 
     args = parser.parse_args()
@@ -105,9 +105,14 @@ def main():
 
     elif args.command == "finance":
         if args.action == "summary":
-         result = summarize_csv_column(args.file, args.column)
-         for k, v in result.items():
-            print(f"{k}: {v}")
+            result = summarize_csv_column(args.file, args.column)
+
+            print(f"Rows processed: {result['rows']}")
+            print(f"Total: {result['sum']:.2f}")
+            print(f"Average: {result['average']:.2f}")
+            print(f"Minimum: {result['min']:.2f}")
+            print(f"Maximum: {result['max']:.2f}")
+
 
     else:
         parser.print_help()
