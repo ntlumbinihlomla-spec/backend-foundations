@@ -1,60 +1,65 @@
 # Backend Foundations — Python CLI Utility Toolkit
 
-A modular backend-style command-line tool for calculations, file processing, and automation tasks.
+A modular Python command-line toolkit for calculations, file processing, and small-business financial automation.
 
-This repository is part of a structured backend learning path focused on writing production-style Python code rather than scripts.
-
----
-
-## Project Goals
-
-- Build modular, maintainable Python applications  
-- Practice backend-style project structure  
-- Implement automated testing  
-- Learn packaging and CLI design  
-- Create portfolio-ready backend projects
+This project focuses on building production-style backend tools that automate real tasks such as data analysis, reporting, and validation.
 
 ---
 
-## Current Tool: CLI Calculator
+## 🚀 What this toolkit is for
 
-A professional command-line calculator built with a clean, modular architecture.
+Backend Foundations is designed to help small teams and developers:
 
-### Features
-
-- Argument-based command-line interface (argparse)
-- Separated core logic and operations
-- Defensive error handling
-- Automated unit tests
-- Installable Python package structure
-- Calculator commands
-- System time command
-- File line counter
-- File word counter
-- Multi-command CLI tool
-
-### Automation & Data Tools
-
-- JSON pretty printer and key counter
-- CSV row and column analyzer
-- Log file error scanner
-- File statistics tools
-- Modular backend CLI architecture
+- Automate calculations and file-based workflows  
+- Analyze CSV, JSON, and log data  
+- Build simple programmable finance tools  
+- Replace repetitive spreadsheet and manual checks  
+- Prototype backend-style utilities quickly  
 
 ---
 
-## Example Usage
+## 🎯 Core Goals
+
+- Modular, maintainable backend architecture  
+- Clean command-line interfaces  
+- Defensive error handling  
+- Automated testing  
+- Installable Python package structure  
+- Portfolio-grade backend utilities  
+
+---
+
+## 🧮 Calculator & System Tools
+
+- Add, subtract, multiply, divide  
+- Command-based CLI interface  
+- System time utility  
+- Defensive input handling  
+
+---
+
+## 📂 Automation & Data Tools
+
+- File line and word counters  
+- Folder-wide line analysis  
+- JSON pretty printer and key counter  
+- CSV row and column analyzer  
+- Log file error scanner  
+
+---
+
+## 💼 Financial Automation (Small Business Focus)
+
+Quickly summarize numeric columns in financial CSV files.
+
+Useful for:
+- Sales summaries  
+- Expense tracking  
+- Payroll checks  
+- Simple financial audits  
+- Data cleanup and validation  
+
+### Example:
 
 ```bash
-python -m calculator.app add 2 3
-python -m calculator.app sub 10 4
-python -m calculator.app mul 6 7
-python -m calculator.app div 10 2
-python -m calculator.app add 2 3
-python -m calculator.app time
-python -m calculator.app lines sample.txt
-python -m calculator.app words sample.txt
-python -m calculator.app calc add 5 7
-python -m calculator.app time
-python -m calculator.app lines test.txt
-python -m calculator.app words test.txt
+python -m calculator.app finance summary sales.csv amount --out report.txt
