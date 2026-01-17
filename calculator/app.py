@@ -63,6 +63,7 @@ def main():
     summary = finance_sub.add_parser("summary", help="Summarize numeric column in CSV")
     summary.add_argument("file")
     summary.add_argument("column")
+    summary.add_argument("--out", help="Save report to file")
 
 
 
@@ -107,11 +108,23 @@ def main():
         if args.action == "summary":
             result = summarize_csv_column(args.file, args.column)
 
-            print(f"Rows processed: {result['rows']}")
-            print(f"Total: {result['sum']:.2f}")
-            print(f"Average: {result['average']:.2f}")
-            print(f"Minimum: {result['min']:.2f}")
-            print(f"Maximum: {result['max']:.2f}")
+        output = (
+            f"Financial Summary Report\n"
+            f"File: {args.file}\n"
+            f"Column: {args.column}\n\n"
+            f"Rows processed: {result['rows']}\n"
+            f"Total: {result['sum']:.2f}\n"
+            f"Average: {result['average']:.2f}\n"
+            f"Minimum: {result['min']:.2f}\n"
+            f"Maximum: {result['max']:.2f}\n"
+        )
+
+        print(output)
+
+        if args.out:
+            with open(args.out, "w", encoding="utf-8") as f:
+                f.write(output)
+            print(f"Report saved to {args.out}")
 
 
     else:

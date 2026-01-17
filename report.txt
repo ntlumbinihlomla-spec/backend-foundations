@@ -1,0 +1,9 @@
+Financial Summary Report
+File: sales.csv
+Column: amount
+
+Rows processed: 3
+Total: 400.00
+Average: 133.33
+Minimum: 50.00
+Maximum: 250.00
