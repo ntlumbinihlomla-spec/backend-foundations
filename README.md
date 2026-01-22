@@ -1,65 +1,164 @@
-# Backend Foundations — Python CLI Utility Toolkit
+# Backend Foundations — Python Automation & CLI Toolkit
 
-A modular Python command-line toolkit for calculations, file processing, and small-business financial automation.
+A modular backend-style command-line toolkit focused on **automation, business data processing, and Python script fixing**.
 
-This project focuses on building production-style backend tools that automate real tasks such as data analysis, reporting, and validation.
-
----
-
-## 🚀 What this toolkit is for
-
-Backend Foundations is designed to help small teams and developers:
-
-- Automate calculations and file-based workflows  
-- Analyze CSV, JSON, and log data  
-- Build simple programmable finance tools  
-- Replace repetitive spreadsheet and manual checks  
-- Prototype backend-style utilities quickly  
+This project is built as a production-style backend system — not a single script — and serves both as a **portfolio project** and a **real utility toolkit**.
 
 ---
 
-## 🎯 Core Goals
+##  Project Purpose
 
-- Modular, maintainable backend architecture  
-- Clean command-line interfaces  
-- Defensive error handling  
-- Automated testing  
-- Installable Python package structure  
-- Portfolio-grade backend utilities  
+Backend Foundations is designed to:
 
----
-
-## 🧮 Calculator & System Tools
-
-- Add, subtract, multiply, divide  
-- Command-based CLI interface  
-- System time utility  
-- Defensive input handling  
+* Build professional backend engineering habits
+* Create real automation tools for business use
+* Provide a foundation for custom Python utilities
+* Demonstrate clean structure, testing, and CLI design
+* Serve as proof-of-work for freelance and automation projects
 
 ---
 
-## 📂 Automation & Data Tools
+##  What This Toolkit Can Do
 
-- File line and word counters  
-- Folder-wide line analysis  
-- JSON pretty printer and key counter  
-- CSV row and column analyzer  
-- Log file error scanner  
+###  Calculator & Core Tools
+
+* Add, subtract, multiply, divide from the command line
+* Defensive error handling
+* Modular business-logic layer
+
+###  System Utilities
+
+* Display system time
+
+###  File & Automation Tools
+
+* Count lines in files
+* Count words in files
+* Count total lines across folders
+
+###  Data & Business Tools
+
+* JSON pretty printer
+* JSON key counter
+* CSV row counter
+* CSV column counter
+* Financial CSV summaries (sum, average, min, max)
+
+###  Log & Audit Tools
+
+* Scan log files and count errors
 
 ---
 
-## 💼 Financial Automation (Small Business Focus)
-
-Quickly summarize numeric columns in financial CSV files.
-
-Useful for:
-- Sales summaries  
-- Expense tracking  
-- Payroll checks  
-- Simple financial audits  
-- Data cleanup and validation  
-
-### Example:
+##  Example Usage
 
 ```bash
-python -m calculator.app finance summary sales.csv amount --out report.txt
+# Calculator
+python -m calculator.app calc add 5 7
+
+# System
+python -m calculator.app time
+
+# File tools
+python -m calculator.app lines sample.txt
+python -m calculator.app words sample.txt
+python -m calculator.app lines-dir ./tests
+
+# JSON tools
+python -m calculator.app json pretty data.json
+python -m calculator.app json keys data.json
+
+# CSV tools
+python -m calculator.app csv rows sales.csv
+python -m calculator.app csv cols sales.csv
+
+# Finance tools
+python -m calculator.app finance summary sales.csv amount
+
+# Log tools
+python -m calculator.app log errors app.log
+```
+
+---
+
+##  Testing
+
+Automated unit tests are included to validate core logic and operations.
+
+```bash
+python -m tests.test_core
+```
+
+---
+
+##  Project Structure
+
+```
+backend-foundations/
+├── calculator/
+│   ├── app.py
+│   ├── core.py
+│   ├── operations.py
+│   ├── file_tools.py
+│   ├── json_tools.py
+│   ├── csv_tools.py
+│   ├── finance_tools.py
+│   ├── log_tools.py
+│   └── utils.py
+├── tests/
+├── examples/
+├── logs/
+└── README.md
+```
+
+---
+
+##  Demo Scenarios
+
+* Sales CSV → instant financial summary
+* Folder → total file audit
+* Log file → error report
+* JSON → clean formatted output
+* Broken script → fixed backend logic
+
+Sample files are available in the `/examples` folder.
+
+---
+
+##  Services I Offer
+
+I build custom Python automation tools and fix broken scripts, especially for business and data workflows.
+
+Examples of what I can help with:
+
+* Fixing Python errors and exceptions
+* Automating CSV and Excel reports
+* Building custom command-line tools
+* Cleaning and restructuring Python projects
+* Financial data processing
+* Internal business utilities
+
+---
+
+##  Need Something Similar?
+
+If you need a custom automation script, backend utility, or help fixing a Python program, feel free to reach out.
+
+This project is actively developed and extended.
+
+---
+
+##  Long-Term Vision
+
+This toolkit is evolving into a full **backend automation framework** supporting:
+
+* Business process automation
+* Financial data systems
+* Internal company tooling
+* Custom backend services
+
+---
+
+##  License
+
+MIT License
