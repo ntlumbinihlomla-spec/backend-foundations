@@ -1,5 +1,25 @@
 import csv
+import os
 from pathlib import Path
+
+
+def batch_summarize(folder, column):
+    results = []
+    grand_total = 0
+
+    for file in os.listdir(folder):
+        if file.endswith(".csv"):
+            path = os.path.join(folder, file)
+
+            summary = summarize_csv_column(path, column)
+
+            total = summary["sum"]
+            grand_total += total
+
+            results.append((file, total))
+
+    return results, grand_total
+
 
 def summarize_csv_column(file_path, column_name):
     path = Path(file_path)

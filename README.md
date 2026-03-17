@@ -137,7 +137,23 @@ Examples of what I can help with:
 * Cleaning and restructuring Python projects
 * Financial data processing
 * Internal business utilities
+## Demo
 
+Example financial report generation:
+
+python -m calculator.app finance summary examples/sales_demo.csv amount
+
+Example output:
+
+=============================================
+        SALES SUMMARY REPORT
+=============================================
+Transactions : 4
+Total Revenue: R790.00
+Average Sale : R197.50
+Highest Sale : R330.00
+Lowest Sale  : R90.00
+=============================================
 ---
 
 ##  Need Something Similar?

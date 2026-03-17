@@ -1,0 +1,13 @@
+
+=============================================
+        SALES SUMMARY REPORT
+=============================================
+File: C:\Users\Mathiwe\OneDrive\Desktop\Business demo\sales.csv
+Column: amount
+---------------------------------------------
+Transactions : 4
+Total Revenue: R790.00
+Average Sale : R197.50
+Highest Sale : R330.00
+Lowest Sale  : R90.00
+=============================================

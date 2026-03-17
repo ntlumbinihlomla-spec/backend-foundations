@@ -1,11 +1,12 @@
 import argparse
+import datetime
 from calculator.core import calculate
 from calculator.utils import show_time
 from calculator.file_tools import count_lines, count_words, count_lines_in_dir
 from calculator.json_tools import pretty_print_json, count_keys
 from calculator.csv_tools import count_rows, count_columns
 from calculator.log_tools import count_errors
-from calculator.finance_tools import summarize_csv_column
+from calculator.finance_tools import summarize_csv_column, batch_summarize
 
 
 
@@ -65,6 +66,10 @@ def main():
     summary.add_argument("column")
     summary.add_argument("--out", help="Save report to file")
 
+    batch = finance_sub.add_parser("batch", help="Process all CSV files in a folder")
+    batch.add_argument("folder")
+    batch.add_argument("column")
+
 
 
     args = parser.parse_args()
@@ -108,28 +113,46 @@ def main():
         if args.action == "summary":
             result = summarize_csv_column(args.file, args.column)
 
-        output = (
-            f"Financial Summary Report\n"
-            f"File: {args.file}\n"
-            f"Column: {args.column}\n\n"
-            f"Rows processed: {result['rows']}\n"
-            f"Total: {result['sum']:.2f}\n"
-            f"Average: {result['average']:.2f}\n"
-            f"Minimum: {result['min']:.2f}\n"
-            f"Maximum: {result['max']:.2f}\n"
-        )
+            output = f"""
+=============================================
+        SALES SUMMARY REPORT
+=============================================
+File: {args.file}
+Column: {args.column}
+---------------------------------------------
+Transactions : {result['rows']}
+Total Revenue: R{result['sum']:.2f}
+Average Sale : R{result['average']:.2f}
+Highest Sale : R{result['max']:.2f}
+Lowest Sale  : R{result['min']:.2f}
+=============================================
+"""
 
-        print(output)
-
-        if args.out:
-            with open(args.out, "w", encoding="utf-8") as f:
+            print(output)
+        
+            if args.out:
+                filename = args.out
+            else:
+                today = datetime.date.today()
+                filename = f"sales_report_{today}.txt"
+        
+            with open(filename, "w", encoding="utf-8") as f:
                 f.write(output)
-            print(f"Report saved to {args.out}")
+        
+            print(f"Report saved to {filename}")
+        
+        elif args.action == "batch":
 
+            results, grand_total = batch_summarize(args.folder, args.column)
 
-    else:
-        parser.print_help()
+            print("\nProcessing folder:", args.folder)
+            print("-" * 40)
 
+            for file, total in results:
+                print(f"{file} → R{total:.2f}")
+
+            print("-" * 40)
+            print(f"TOTAL ACROSS FILES → R{grand_total:.2f}")
 
 if __name__ == "__main__":
     main()
