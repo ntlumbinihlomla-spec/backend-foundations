@@ -1,9 +1,13 @@
-Financial Summary Report
-File: sales.csv
-Column: amount
 
-Rows processed: 3
-Total: 400.00
-Average: 133.33
-Minimum: 50.00
-Maximum: 250.00
+=============================================
+        SALES SUMMARY REPORT
+=============================================
+File: C:\Users\Mathiwe\OneDrive\Desktop\Business demo\sales.csv
+Column: amount
+---------------------------------------------
+Transactions : 4
+Total Revenue: R790.00
+Average Sale : R197.50
+Highest Sale : R330.00
+Lowest Sale  : R90.00
+=============================================
