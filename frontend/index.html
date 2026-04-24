@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Dashboard</title>
+    <style>
+        :root {
+            --bg: linear-gradient(135deg, #f3efe6 0%, #d8e7f2 100%);
+            --panel: rgba(255, 255, 255, 0.92);
+            --text: #1d2935;
+            --accent: #0b6e4f;
+            --accent-dark: #084c39;
+            --border: rgba(29, 41, 53, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Georgia, "Times New Roman", serif;
+            background: var(--bg);
+            color: var(--text);
+            display: grid;
+            place-items: center;
+            padding: 24px;
+        }
+
+        .card {
+            width: min(720px, 100%);
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 20px 60px rgba(29, 41, 53, 0.12);
+            backdrop-filter: blur(8px);
+        }
+
+        h1 {
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 24px;
+        }
+
+        .row {
+            display: grid;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        input,
+        button {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            font: inherit;
+        }
+
+        button {
+            background: var(--accent);
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            background: var(--accent-dark);
+        }
+
+        pre {
+            margin: 0;
+            min-height: 220px;
+            border-radius: 18px;
+            padding: 18px;
+            background: #14202b;
+            color: #e5f6ef;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <main class="card">
+        <h1>CSV Financial Analyzer</h1>
+        <p>Upload a CSV, choose a numeric column, and inspect the calculated summary from the API.</p>
+
+        <div class="row">
+            <input type="file" id="fileInput" accept=".csv">
+            <button onclick="upload()">Upload</button>
+        </div>
+
+        <div class="row">
+            <input type="text" id="column" placeholder="Column name (for example: amount)">
+            <button onclick="analyze()">Analyze</button>
+        </div>
+
+        <pre id="output">Waiting for input...</pre>
+    </main>
+
+    <script>
+        const API_URL = "https://backend-foundations.onrender.com";
+
+        async function upload() {
+            const file = document.getElementById("fileInput").files[0];
+            const output = document.getElementById("output");
+
+            if (!file) {
+                output.innerText = "Choose a CSV file first.";
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("file", file);
+
+            const res = await fetch(`${API_URL}/upload`, {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await res.json();
+            output.innerText = JSON.stringify(data, null, 2);
+        }
+
+        async function analyze() {
+            const file = document.getElementById("fileInput").files[0];
+            const column = document.getElementById("column").value.trim();
+            const output = document.getElementById("output");
+
+            if (!file) {
+                output.innerText = "Choose and upload a CSV file first.";
+                return;
+            }
+
+            if (!column) {
+                output.innerText = "Enter the column name to analyze.";
+                return;
+            }
+
+            const res = await fetch(
+                `${API_URL}/summary?file=${encodeURIComponent(file.name)}&column=${encodeURIComponent(column)}`
+            );
+
+            const data = await res.json();
+            output.innerText = JSON.stringify(data, null, 2);
+        }
+    </script>
+</body>
+</html>
