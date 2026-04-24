@@ -6,10 +6,16 @@ setup(
     description="A professional command-line calculator tool built in Python.",
     author="Hlomla Ntlumbini",
     author_email="ntlumbinihlomla@gmail.com",
-    packages=find_packages(where='calculator'),  # only include `calculator` folder
+    packages=find_packages(),
+    install_requires=[
+        "fastapi>=0.115,<1.0",
+        "uvicorn>=0.30,<1.0",
+        "python-multipart>=0.0.9,<1.0",
+    ],
     entry_points={
         "console_scripts": [
             "calculator = calculator.app:main",
+            "calculator-api = calculator.api:run",
         ]
     },
 )

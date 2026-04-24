@@ -20,11 +20,32 @@ Backend Foundations is designed to:
 
 ##  What This Toolkit Can Do
 
-###  Calculator & Core Tools
+###  Project #1: Calculator & CLI Toolkit
 
 * Add, subtract, multiply, divide from the command line
 * Defensive error handling
 * Modular business-logic layer
+
+###  Project #2: Task API Backend
+
+* JSON REST API for task tracking
+* Create, list, update, and delete tasks
+* File-backed persistence using JSON storage
+* Health-check endpoint for backend monitoring
+
+###  Project #3: Workspace Audit & Reporting
+
+* Scan a project folder and generate a consolidated audit report
+* Count total files and total lines across supported text files
+* Summarize CSV structure, JSON key counts, and log error totals
+* Export the audit report to a text file from the CLI
+
+###  Project #4: Financial API & Dashboard
+
+* FastAPI upload and CSV summary endpoints
+* Batch financial summaries across folders of CSV files
+* Health-check endpoint for deployment monitoring
+* Simple frontend dashboard for upload and summary inspection
 
 ###  System Utilities
 
@@ -77,17 +98,70 @@ python -m calculator.app finance summary sales.csv amount
 
 # Log tools
 python -m calculator.app log errors app.log
+
+# Workspace audit project
+python -m calculator.app report audit examples
+python -m calculator.app report audit examples --out audit_report.txt
+
+# Financial API
+uvicorn calculator.api:app --reload
+
+# Task API backend
+python -m task_api.server --host 127.0.0.1 --port 8000
 ```
+
+Task API routes:
+
+```text
+GET    /health
+GET    /tasks
+POST   /tasks
+GET    /tasks/{id}
+PATCH  /tasks/{id}
+DELETE /tasks/{id}
+```
+
+Financial API routes:
+
+```text
+POST   /upload
+GET    /summary
+GET    /batch-summary
+GET    /health
+```
+
+## Deploy To Render
+
+This repo now includes a [render.yaml](/C:/Users/Mathiwe/backend-foundations/render.yaml) file for a simple web-service deployment.
+
+1. Push the repo to GitHub.
+2. Create a new Render Web Service from the repo.
+3. Render can use the included config automatically, or you can use:
+
+```bash
+Build Command: pip install -r requirements.txt
+Start Command: uvicorn calculator.api:app --host 0.0.0.0 --port $PORT
+```
+
+After deploy, open:
+
+```text
+https://your-app.onrender.com/docs
+```
+
+To point the dashboard at production, update `API_URL` in [index.html](/C:/Users/Mathiwe/backend-foundations/frontend/index.html) to your Render URL.
 
 ---
 
 ##  Testing
 
-Automated unit tests are included to validate core logic and operations.
+Automated unit tests cover the CLI, calculator logic, file tools, CSV tools, JSON tools, log tools, and finance summaries.
 
 ```bash
-python -m tests.test_core
+python -m unittest discover -s tests -p "test_*.py" -v
 ```
+
+GitHub Actions also runs the full test suite on every push to `main` and on pull requests.
 
 ---
 
@@ -120,6 +194,7 @@ backend-foundations/
 * Log file → error report
 * JSON → clean formatted output
 * Broken script → fixed backend logic
+* Project folder → audit summary report
 
 Sample files are available in the `/examples` folder.
 
@@ -141,10 +216,13 @@ Examples of what I can help with:
 
 Example financial report generation:
 
+```bash
 python -m calculator.app finance summary examples/sales_demo.csv amount
+```
 
 Example output:
 
+```text
 =============================================
         SALES SUMMARY REPORT
 =============================================
@@ -154,6 +232,7 @@ Average Sale : R197.50
 Highest Sale : R330.00
 Lowest Sale  : R90.00
 =============================================
+```
 ---
 
 ##  Need Something Similar?
