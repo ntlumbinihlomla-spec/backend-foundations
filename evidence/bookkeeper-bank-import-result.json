@@ -1,0 +1,50 @@
+{
+  "import_batch_id": "batch_JHlaQisUeoQvoVHu",
+  "transactions": [
+    {
+      "id": "bank_B_TNX-mEO4dDH4P6",
+      "business_id": "biz_n7LW1FbSU7kRcbC4",
+      "import_batch_id": "batch_JHlaQisUeoQvoVHu",
+      "date": "2026-05-14",
+      "description": "Payment INV-3001",
+      "reference": "TRX-001",
+      "amount": 5750.0,
+      "status": "matched",
+      "matched_entity_type": "invoice",
+      "matched_entity_id": "inv_wwUNjjwCe7zVv-vA",
+      "confidence": 0.9,
+      "notes": "",
+      "created_at": "2026-06-03T15:47:22.541241+00:00"
+    },
+    {
+      "id": "bank_GzN65rBLGeTUpQOv",
+      "business_id": "biz_n7LW1FbSU7kRcbC4",
+      "import_batch_id": "batch_JHlaQisUeoQvoVHu",
+      "date": "2026-06-02",
+      "description": "Bank service fee",
+      "reference": "TRX-002",
+      "amount": -120.0,
+      "status": "matched",
+      "matched_entity_type": "expense",
+      "matched_entity_id": "exp_pmvW58_jbikQMJSj",
+      "confidence": 0.7,
+      "notes": "",
+      "created_at": "2026-06-03T15:47:22.541241+00:00"
+    },
+    {
+      "id": "bank_deHsPs33ZhTOx3Vj",
+      "business_id": "biz_n7LW1FbSU7kRcbC4",
+      "import_batch_id": "batch_JHlaQisUeoQvoVHu",
+      "date": "2026-06-03",
+      "description": "Unknown client deposit",
+      "reference": "TRX-003",
+      "amount": 850.0,
+      "status": "unmatched",
+      "matched_entity_type": "",
+      "matched_entity_id": "",
+      "confidence": 0.0,
+      "notes": "",
+      "created_at": "2026-06-03T15:47:22.541241+00:00"
+    }
+  ]
+}

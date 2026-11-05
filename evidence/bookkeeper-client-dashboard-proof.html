@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bookkeeper Client Ops Dashboard Proof</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; color: #17212b; background: #f4f7f5; }
+    main { max-width: 980px; margin: 0 auto; padding: 28px; }
+    .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: center; }
+    h1 { margin: 0 0 10px; font-size: 38px; line-height: 1.08; }
+    p { line-height: 1.55; }
+    img { max-width: 100%; border: 1px solid #d8e0e6; }
+    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 24px 0; }
+    .metric { background: white; border: 1px solid #d8e0e6; padding: 14px; }
+    .metric strong { display: block; font-size: 22px; margin-top: 6px; }
+    table { width: 100%; border-collapse: collapse; background: white; }
+    th, td { text-align: left; border-bottom: 1px solid #d8e0e6; padding: 12px; vertical-align: top; }
+    th { background: #0b6b58; color: white; }
+    .assets { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+    @media (max-width: 760px) { .hero, .assets, .metrics { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <h1>Simple client dashboard for bookkeepers</h1>
+        <p>Shows who owes what, which documents are missing, and what needs attention today.</p>
+      </div>
+      <img src="../frontend/assets/fiverr-dashboard-screenshot.png" alt="Dashboard screenshot">
+    </section>
+    <section class="metrics">
+      <div class="metric">Paid income<strong>R5,750.00</strong></div>
+      <div class="metric">Outstanding<strong>R6,440.00</strong></div>
+      <div class="metric">Overdue<strong>2</strong></div>
+      <div class="metric">VAT estimate<strong>R1,460.22</strong></div>
+    </section>
+    <h2>Attention Today</h2>
+    <table>
+      <thead><tr><th>Client/Supplier</th><th>Issue</th><th>Amount</th><th>Next Action</th></tr></thead>
+      <tbody><tr><td>Nkosi Logistics</td><td>Overdue invoice</td><td>R3,450.00</td><td>Send payment reminder</td></tr>
+<tr><td>Kwezi Consulting</td><td>Overdue invoice</td><td>R805.00</td><td>Call or email decision maker</td></tr>
+<tr><td>CloudSuite</td><td>Missing receipt</td><td>R575.00</td><td>Ask client for receipt</td></tr>
+<tr><td>Bank import</td><td>Unmatched transaction</td><td>R850.00</td><td>Match to invoice or mark as unknown</td></tr></tbody>
+    </table>
+    <section class="assets">
+      <img src="../frontend/assets/fiverr-dashboard-screenshot.png" alt="Dashboard proof">
+      <img src="../frontend/assets/fiverr-report-screenshot.png" alt="Report proof">
+    </section>
+  </main>
+</body>
+</html>

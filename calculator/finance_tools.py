@@ -4,12 +4,16 @@ from pathlib import Path
 
 
 def batch_summarize(folder, column):
+    folder_path = Path(folder)
+    if not folder_path.exists() or not folder_path.is_dir():
+        raise NotADirectoryError("Folder does not exist")
+
     results = []
     grand_total = 0
 
-    for file in os.listdir(folder):
+    for file in os.listdir(folder_path):
         if file.endswith(".csv"):
-            path = os.path.join(folder, file)
+            path = folder_path / file
 
             summary = summarize_csv_column(path, column)
 
@@ -19,6 +23,16 @@ def batch_summarize(folder, column):
             results.append((file, total))
 
     return results, grand_total
+
+
+def get_csv_columns(file_path):
+    path = Path(file_path)
+    if not path.exists():
+        raise FileNotFoundError("CSV file not found")
+
+    with path.open(newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        return reader.fieldnames or []
 
 
 def summarize_csv_column(file_path, column_name):

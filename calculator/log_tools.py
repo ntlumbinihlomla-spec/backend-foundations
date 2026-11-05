@@ -1,4 +1,11 @@
+from pathlib import Path
+
+
 def count_errors(filepath):
-    with open(filepath, "r", encoding="utf-8") as f:
-        return sum(1 for line in f if "error" in line.lower())
+    path = Path(filepath)
+    if not path.exists() or not path.is_file():
+        raise FileNotFoundError("Log file not found")
+
+    with path.open("r", encoding="utf-8") as file_handle:
+        return sum(1 for line in file_handle if "error" in line.lower())
 

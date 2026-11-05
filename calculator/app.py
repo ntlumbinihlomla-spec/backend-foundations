@@ -7,6 +7,7 @@ from calculator.file_tools import count_lines, count_lines_in_dir, count_words
 from calculator.finance_tools import batch_summarize, summarize_csv_column
 from calculator.json_tools import count_keys, pretty_print_json
 from calculator.log_tools import count_errors
+from calculator.report_tools import build_workspace_audit, format_workspace_audit
 from calculator.utils import show_time
 
 
@@ -67,6 +68,13 @@ def build_parser():
     batch = finance_sub.add_parser("batch", help="Process all CSV files in a folder")
     batch.add_argument("folder")
     batch.add_argument("column")
+
+    report = subparsers.add_parser("report", help="Workspace audit tools")
+    report_sub = report.add_subparsers(dest="action", required=True)
+
+    audit = report_sub.add_parser("audit", help="Generate a folder audit report")
+    audit.add_argument("folder")
+    audit.add_argument("--out", help="Save report to file")
 
     return parser
 
@@ -152,6 +160,17 @@ def main(argv=None):
 
             print("-" * 40)
             print(f"TOTAL ACROSS FILES -> R{grand_total:.2f}")
+
+    elif args.command == "report":
+        if args.action == "audit":
+            report = format_workspace_audit(build_workspace_audit(args.folder))
+            print(report)
+
+            if args.out:
+                with open(args.out, "w", encoding="utf-8") as file_handle:
+                    file_handle.write(report)
+
+                print(f"Report saved to {args.out}")
 
 
 if __name__ == "__main__":

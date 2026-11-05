@@ -1,0 +1,51 @@
+{
+  "total_income": 5750.0,
+  "total_expenses": 1115.0,
+  "net_profit": 4635.0,
+  "outstanding_invoices": 6440.0,
+  "outstanding_invoice_count": 3,
+  "overdue_invoices": 2,
+  "overdue_invoice_total": 4255.0,
+  "cash_flow_summary": 4635.0,
+  "output_tax": 1590.0,
+  "input_tax": 129.78,
+  "tax_estimate": 1460.22,
+  "monthly_revenue": [
+    {
+      "month": "2026-05",
+      "amount": 5750.0
+    },
+    {
+      "month": "2026-06",
+      "amount": 0.0
+    }
+  ],
+  "monthly_cash_flow": [
+    {
+      "month": "2026-05",
+      "income": 5750.0,
+      "expenses": 420.0,
+      "net": 5330.0
+    },
+    {
+      "month": "2026-06",
+      "income": 0.0,
+      "expenses": 695.0,
+      "net": -695.0
+    }
+  ],
+  "expense_category_breakdown": [
+    {
+      "category": "Software",
+      "amount": 575.0
+    },
+    {
+      "category": "Office",
+      "amount": 420.0
+    },
+    {
+      "category": "Bank Fees",
+      "amount": 120.0
+    }
+  ]
+}

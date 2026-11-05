@@ -83,6 +83,44 @@ class TestAppCli(unittest.TestCase):
         self.assertIn("sales.csv -> R12.50", output)
         self.assertIn("TOTAL ACROSS FILES -> R20.00", output)
 
+    def test_report_audit_writes_requested_report(self):
+        report_path = Path("audit_report_output.txt")
+        stdout = io.StringIO()
+
+        try:
+            with patch.object(
+                app,
+                "build_workspace_audit",
+                return_value={
+                    "folder": "examples",
+                    "total_files": 2,
+                    "total_lines": 8,
+                    "csv_files": [{"name": "sales.csv", "rows": 3, "columns": 2}],
+                    "json_files": [],
+                    "log_files": [{"name": "app.log", "errors": 1}],
+                },
+            ):
+                with redirect_stdout(stdout):
+                    app.main(
+                        [
+                            "report",
+                            "audit",
+                            "examples",
+                            "--out",
+                            str(report_path),
+                        ]
+                    )
+
+            self.assertIn("WORKSPACE AUDIT REPORT", stdout.getvalue())
+            self.assertIn(f"Report saved to {report_path}", stdout.getvalue())
+            self.assertIn(
+                "Total Files : 2",
+                report_path.read_text(encoding="utf-8"),
+            )
+        finally:
+            if report_path.exists():
+                report_path.unlink()
+
 
 if __name__ == "__main__":
     unittest.main()

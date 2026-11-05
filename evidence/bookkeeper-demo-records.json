@@ -1,0 +1,282 @@
+{
+  "business": {
+    "id": "biz_n7LW1FbSU7kRcbC4",
+    "name": "Client Ops Demo Books",
+    "owner": "Hlomla",
+    "tax_rate": 15.0,
+    "created_at": "2026-06-03T15:47:21.384796+00:00",
+    "updated_at": "2026-06-03T15:47:21.384796+00:00"
+  },
+  "clients": [
+    {
+      "id": "client_TV34PJEpWsL803Ww",
+      "business_id": "biz_n7LW1FbSU7kRcbC4",
+      "name": "Moko Trading",
+      "email": "owner@moko.example",
+      "phone": "",
+      "business_name": "Moko Trading",
+      "tax_number": "",
+      "address": "",
+      "created_at": "2026-06-03T15:47:21.472933+00:00",
+      "updated_at": "2026-06-03T15:47:21.472933+00:00"
+    },
+    {
+      "id": "client_03CwxF6KiJTKMeiq",
+      "business_id": "biz_n7LW1FbSU7kRcbC4",
+      "name": "Nkosi Logistics",
+      "email": "finance@nkosi.example",
+      "phone": "",
+      "business_name": "Nkosi Logistics",
+      "tax_number": "",
+      "address": "",
+      "created_at": "2026-06-03T15:47:21.522097+00:00",
+      "updated_at": "2026-06-03T15:47:21.522097+00:00"
+    },
+    {
+      "id": "client_PZpFAK_PWQVXCGnv",
+      "business_id": "biz_n7LW1FbSU7kRcbC4",
+      "name": "Bloom Cafe",
+      "email": "admin@bloom.example",
+      "phone": "",
+      "business_name": "Bloom Cafe",
+      "tax_number": "",
+      "address": "",
+      "created_at": "2026-06-03T15:47:21.571032+00:00",
+      "updated_at": "2026-06-03T15:47:21.571032+00:00"
+    },
+    {
+      "id": "client_9a4CCBmtwDOkrPfM",
+      "business_id": "biz_n7LW1FbSU7kRcbC4",
+      "name": "Kwezi Consulting",
+      "email": "ops@kwezi.example",
+      "phone": "",
+      "business_name": "Kwezi Consulting",
+      "tax_number": "",
+      "address": "",
+      "created_at": "2026-06-03T15:47:21.624254+00:00",
+      "updated_at": "2026-06-03T15:47:21.624254+00:00"
+    }
+  ],
+  "suppliers": [
+    {
+      "id": "supplier_OkrkqY_BRgnKCaKV",
+      "business_id": "biz_n7LW1FbSU7kRcbC4",
+      "name": "CloudSuite",
+      "email": "billing@cloudsuite.example",
+      "phone": "",
+      "business_name": "",
+      "tax_number": "",
+      "address": "",
+      "created_at": "2026-06-03T15:47:21.707471+00:00",
+      "updated_at": "2026-06-03T15:47:21.707471+00:00"
+    },
+    {
+      "id": "supplier_D4K3s5aKq3f2lKEF",
+      "business_id": "biz_n7LW1FbSU7kRcbC4",
+      "name": "OfficeMart",
+      "email": "accounts@officemart.example",
+      "phone": "",
+      "business_name": "",
+      "tax_number": "",
+      "address": "",
+      "created_at": "2026-06-03T15:47:21.776498+00:00",
+      "updated_at": "2026-06-03T15:47:21.776498+00:00"
+    }
+  ],
+  "invoices": [
+    {
+      "id": "inv_wwUNjjwCe7zVv-vA",
+      "business_id": "biz_n7LW1FbSU7kRcbC4",
+      "client_id": "client_TV34PJEpWsL803Ww",
+      "client_name": "Moko Trading",
+      "number": "INV-3001",
+      "issue_date": "2026-05-01",
+      "due_date": "2026-05-15",
+      "status": "paid",
+      "stored_status": "paid",
+      "label": "approved",
+      "notes": "",
+      "comments": "",
+      "created_by": "Hlomla",
+      "created_at": "2026-06-03T15:47:21.850259",
+      "updated_at": "2026-06-03T15:47:22.067350+00:00",
+      "paid_at": "2026-05-14",
+      "items": [
+        {
+          "id": "item_-oRMlNKNo1o0BkMS",
+          "description": "Monthly bookkeeping dashboard support",
+          "quantity": 1.0,
+          "price": 5000.0,
+          "tax_rate": 15.0,
+          "position": 0
+        }
+      ],
+      "totals": {
+        "subtotal": 5000.0,
+        "tax": 750.0,
+        "total": 5750.0
+      }
+    },
+    {
+      "id": "inv_pVRlUfw0LpCnJ8Zx",
+      "business_id": "biz_n7LW1FbSU7kRcbC4",
+      "client_id": "client_03CwxF6KiJTKMeiq",
+      "client_name": "Nkosi Logistics",
+      "number": "INV-3002",
+      "issue_date": "2026-05-08",
+      "due_date": "2026-05-24",
+      "status": "overdue",
+      "stored_status": "unpaid",
+      "label": "review-needed",
+      "notes": "",
+      "comments": "",
+      "created_by": "Hlomla",
+      "created_at": "2026-06-03T15:47:22.123899+00:00",
+      "updated_at": "2026-06-03T15:47:22.123899+00:00",
+      "paid_at": "",
+      "items": [
+        {
+          "id": "item_ijQComzjQn_qxLX2",
+          "description": "Monthly bookkeeping dashboard support",
+          "quantity": 1.0,
+          "price": 3000.0,
+          "tax_rate": 15.0,
+          "position": 0
+        }
+      ],
+      "totals": {
+        "subtotal": 3000.0,
+        "tax": 450.0,
+        "total": 3450.0
+      }
+    },
+    {
+      "id": "inv_UhCpgPgPIIDvfmBF",
+      "business_id": "biz_n7LW1FbSU7kRcbC4",
+      "client_id": "client_PZpFAK_PWQVXCGnv",
+      "client_name": "Bloom Cafe",
+      "number": "INV-3003",
+      "issue_date": "2026-06-01",
+      "due_date": "2026-06-15",
+      "status": "unpaid",
+      "stored_status": "unpaid",
+      "label": "review-needed",
+      "notes": "",
+      "comments": "",
+      "created_by": "Hlomla",
+      "created_at": "2026-06-03T15:47:22.188842+00:00",
+      "updated_at": "2026-06-03T15:47:22.188842+00:00",
+      "paid_at": "",
+      "items": [
+        {
+          "id": "item_GXfOdhMkU7SfCD8W",
+          "description": "Monthly bookkeeping dashboard support",
+          "quantity": 1.0,
+          "price": 1900.0,
+          "tax_rate": 15.0,
+          "position": 0
+        }
+      ],
+      "totals": {
+        "subtotal": 1900.0,
+        "tax": 285.0,
+        "total": 2185.0
+      }
+    },
+    {
+      "id": "inv_8on_g5BlynaTnnpQ",
+      "business_id": "biz_n7LW1FbSU7kRcbC4",
+      "client_id": "client_9a4CCBmtwDOkrPfM",
+      "client_name": "Kwezi Consulting",
+      "number": "INV-3004",
+      "issue_date": "2026-05-18",
+      "due_date": "2026-05-30",
+      "status": "overdue",
+      "stored_status": "unpaid",
+      "label": "review-needed",
+      "notes": "",
+      "comments": "",
+      "created_by": "Hlomla",
+      "created_at": "2026-06-03T15:47:22.267112+00:00",
+      "updated_at": "2026-06-03T15:47:22.267112+00:00",
+      "paid_at": "",
+      "items": [
+        {
+          "id": "item_cfO1rmHLYCMzL79j",
+          "description": "Monthly bookkeeping dashboard support",
+          "quantity": 1.0,
+          "price": 700.0,
+          "tax_rate": 15.0,
+          "position": 0
+        }
+      ],
+      "totals": {
+        "subtotal": 700.0,
+        "tax": 105.0,
+        "total": 805.0
+      }
+    }
+  ],
+  "expenses": [
+    {
+      "id": "exp_M0H3eNwwUnc46-k0",
+      "business_id": "biz_n7LW1FbSU7kRcbC4",
+      "supplier_id": "supplier_OkrkqY_BRgnKCaKV",
+      "supplier_name": "CloudSuite",
+      "date": "2026-06-01",
+      "category": "Software",
+      "amount": 575.0,
+      "tax_rate": 15.0,
+      "tax_amount": 75.0,
+      "payment_method": "card",
+      "notes": "Receipt still needed.",
+      "comments": "",
+      "deductible": true,
+      "receipt_filename": "",
+      "label": "missing-info",
+      "created_by": "Hlomla",
+      "created_at": "2026-06-03T15:47:22.320018+00:00",
+      "updated_at": "2026-06-03T15:47:22.320018+00:00"
+    },
+    {
+      "id": "exp_8ZdTr-2xUce7IpAB",
+      "business_id": "biz_n7LW1FbSU7kRcbC4",
+      "supplier_id": "supplier_D4K3s5aKq3f2lKEF",
+      "supplier_name": "OfficeMart",
+      "date": "2026-05-25",
+      "category": "Office",
+      "amount": 420.0,
+      "tax_rate": 15.0,
+      "tax_amount": 54.78,
+      "payment_method": "card",
+      "notes": "",
+      "comments": "",
+      "deductible": true,
+      "receipt_filename": "",
+      "label": "approved",
+      "created_by": "Hlomla",
+      "created_at": "2026-06-03T15:47:22.369458+00:00",
+      "updated_at": "2026-06-03T15:47:22.369458+00:00"
+    },
+    {
+      "id": "exp_pmvW58_jbikQMJSj",
+      "business_id": "biz_n7LW1FbSU7kRcbC4",
+      "supplier_id": null,
+      "supplier_name": "Bank",
+      "date": "2026-06-02",
+      "category": "Bank Fees",
+      "amount": 120.0,
+      "tax_rate": 0.0,
+      "tax_amount": 0.0,
+      "payment_method": "card",
+      "notes": "",
+      "comments": "",
+      "deductible": false,
+      "receipt_filename": "",
+      "label": "approved",
+      "created_by": "Hlomla",
+      "created_at": "2026-06-03T15:47:22.413843+00:00",
+      "updated_at": "2026-06-03T15:47:22.413843+00:00"
+    }
+  ]
+}

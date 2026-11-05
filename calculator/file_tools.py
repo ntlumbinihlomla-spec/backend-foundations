@@ -25,8 +25,12 @@ def count_lines_in_dir(folder):
         raise NotADirectoryError("Folder does not exist")
 
     total = 0
-    for file in folder_path.iterdir():
+    for file in folder_path.rglob("*"):
         if file.is_file():
-            total += count_lines(file)
+            try:
+                total += count_lines(file)
+            except UnicodeDecodeError:
+                # Binary or non-UTF-8 files do not have meaningful text lines.
+                continue
 
     return total

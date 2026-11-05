@@ -1,8 +1,10 @@
-# Backend Foundations — Python Automation & CLI Toolkit
+# Backend Foundations - Python Automation & CLI Toolkit
+
+Revanant portfolio offer and bounded delivery plan: [docs/revanant-reporting-offer.md](docs/revanant-reporting-offer.md).
 
 A modular backend-style command-line toolkit focused on **automation, business data processing, and Python script fixing**.
 
-This project is built as a production-style backend system — not a single script — and serves both as a **portfolio project** and a **real utility toolkit**.
+This project is built as a production-style backend system - not a single script - and serves both as a **portfolio project** and a **real utility toolkit**.
 
 ---
 
@@ -124,13 +126,138 @@ DELETE /tasks/{id}
 Financial API routes:
 
 ```text
+GET    /
+GET    /status
+POST   /billing/checkout
+POST   /billing/webhook
+GET    /billing/api-key
+GET    /billing/success
+GET    /billing/cancel
 POST   /upload
+POST   /sources/csv-url
+POST   /sources/refresh
+GET    /files
+GET    /files/{filename}/columns
+DELETE /files/{filename}
+GET    /reports/client
+GET    /dashboard-summary
 GET    /summary
 GET    /batch-summary
 GET    /health
 ```
 
+Accounting API routes:
+
+```text
+POST   /accounting/auth/register
+POST   /accounting/auth/login
+GET    /accounting/me
+GET    /accounting/businesses
+POST   /accounting/businesses
+GET    /accounting/businesses/{business_id}
+PATCH  /accounting/businesses/{business_id}
+DELETE /accounting/businesses/{business_id}
+GET    /accounting/businesses/{business_id}/clients
+POST   /accounting/businesses/{business_id}/clients
+PATCH  /accounting/businesses/{business_id}/clients/{client_id}
+DELETE /accounting/businesses/{business_id}/clients/{client_id}
+GET    /accounting/businesses/{business_id}/suppliers
+POST   /accounting/businesses/{business_id}/suppliers
+PATCH  /accounting/businesses/{business_id}/suppliers/{supplier_id}
+DELETE /accounting/businesses/{business_id}/suppliers/{supplier_id}
+GET    /accounting/businesses/{business_id}/invoices
+POST   /accounting/businesses/{business_id}/invoices
+GET    /accounting/businesses/{business_id}/invoices/{invoice_id}
+PATCH  /accounting/businesses/{business_id}/invoices/{invoice_id}
+PATCH  /accounting/businesses/{business_id}/invoices/{invoice_id}/status
+DELETE /accounting/businesses/{business_id}/invoices/{invoice_id}
+GET    /accounting/businesses/{business_id}/invoices/{invoice_id}/pdf
+GET    /accounting/businesses/{business_id}/expenses
+POST   /accounting/businesses/{business_id}/expenses
+PATCH  /accounting/businesses/{business_id}/expenses/{expense_id}
+DELETE /accounting/businesses/{business_id}/expenses/{expense_id}
+POST   /accounting/businesses/{business_id}/expenses/{expense_id}/receipt
+GET    /accounting/businesses/{business_id}/dashboard
+GET    /accounting/businesses/{business_id}/reports/{report_type}
+GET    /accounting/businesses/{business_id}/reports/{report_type}.csv
+GET    /accounting/businesses/{business_id}/reports/{report_type}.pdf
+GET    /accounting/businesses/{business_id}/audit-logs
+POST   /accounting/businesses/{business_id}/bank-import
+GET    /accounting/businesses/{business_id}/bank-transactions
+PATCH  /accounting/businesses/{business_id}/bank-transactions/{transaction_id}/match
+```
+
+Public API protection:
+
+* Stripe Checkout creates paid subscriptions and `checkout.session.completed` webhooks provision API keys
+* Paid API keys are stored hashed in `data/api_keys.json`; the one-time checkout claim is stored in `data/billing_claims.json`
+* `customer.subscription.deleted` webhooks deactivate matching paid API keys
+* `GET /status` exposes non-secret runtime, storage, rate-limit, upload-limit, and billing readiness metadata
+* `POST /upload`, `POST /sources/csv-url`, `GET /summary`, `GET /batch-summary`, and `GET /reports/client` require the `x-api-key` header
+* `POST /sources/refresh` refreshes saved CSV source URL imports without pasting the URL again
+* `GET /files` and `GET /files/{filename}/columns` also require the `x-api-key` header
+* `DELETE /files/{filename}` and `GET /dashboard-summary` are also protected
+* The API persists hashed keys in `data/api_keys.json`
+* The default local/demo key is `backend-foundations-demo-key`
+* Set `API_KEY` in Render before first production boot to seed the stored key with your real secret
+* Requests are rate-limited per client IP using `RATE_LIMIT_MAX_REQUESTS` over `RATE_LIMIT_WINDOW_SECONDS`
+* Uploads are limited by `MAX_UPLOAD_BYTES` and must be UTF-8 CSV files with a header row
+* CSV source URL imports use the same size and UTF-8 validation as uploads
+* Private/local CSV source URLs are blocked unless `ALLOW_PRIVATE_SOURCE_URLS=true`
+* In production, explicit local folder batch summaries are disabled unless `ALLOW_LOCAL_FOLDER_BATCH=true`
+* Uploaded file metadata is persisted in `data/upload_index.json` so the dashboard can list and batch-select files
+
+Accounting backend configuration:
+
+* `/accounting/*` uses bearer-token auth from `/accounting/auth/register` or `/accounting/auth/login`
+* Every business record is scoped through `accounting_business_members`, so users cannot access another user's business data
+* SQLite is the default local database at `data/accounting.sqlite3`
+* Set `ACCOUNTING_DATABASE_URL` or `DATABASE_URL` to switch storage; `postgres://` and `postgresql://` URLs are converted to the `psycopg` SQLAlchemy driver automatically
+* Receipt uploads are stored under `data/receipts/{business_id}` by default
+* Server-generated invoice PDFs and report PDFs use ReportLab
+* Bank CSV imports detect date, description, amount, and reference columns, then auto-match positive amounts to invoices and negative amounts to expenses by amount
+* Supported reports are `profit-loss`, `sales`, `expenses`, `tax`, and `cash-flow`
+
+Dashboard upgrades:
+
+* LedgerLite Assistant frontend for SMEs, bookkeepers, and accountants
+* Multi-business/bookkeeper mode with backend-ready business records and localStorage still available for offline frontend demos
+* Financial dashboard cards for income, expenses, profit, outstanding invoices, overdue invoices, cash flow, and VAT/tax estimate
+* Invoice management with clients, line items, quantities, prices, VAT/tax, paid/unpaid/overdue statuses, comments, labels, and PDF download
+* Expense tracking with suppliers, categories, VAT/tax, deductible flags, payment methods, notes, labels, and receipt filename placeholder
+* Client and supplier management with contact, business, tax/VAT, and address details
+* Profit & Loss, Sales, Expense, Tax/VAT, and Cash Flow reports with CSV export
+* Client health score based on overdue invoices, missing expense information, and revenue trend
+* Audit trail with user, action, entity, timestamp, and details for accounting review
+* Light/dark mode, responsive sidebar layout, empty states, confirmation modals, and toast notifications
+* Demo landing page with free demo, paid monthly access, and custom dashboard offer
+* Freelance service page for selling dashboard pilots to SMEs
+* Fiverr Gig setup kit for marketplace launch
+
+Billing configuration:
+
+* `STRIPE_SECRET_KEY` - Stripe secret key used by the API to create Checkout sessions
+* `STRIPE_PRICE_ID` - recurring Stripe Price ID for the paid dashboard plan
+* `STRIPE_WEBHOOK_SECRET` - webhook signing secret for `/billing/webhook`
+* `PUBLIC_BASE_URL` - deployed API base URL used for Checkout success and cancel redirects
+* `MAX_UPLOAD_BYTES` - maximum accepted CSV upload size in bytes; defaults to 5242880
+* `ALLOW_LOCAL_FOLDER_BATCH` - set to `true` only if the deployed API should summarize CSV files from arbitrary server folders
+* `ACCOUNTING_DATABASE_URL` - optional SQLAlchemy database URL for accounting records; defaults to local SQLite
+* Optional: `CHECKOUT_SUCCESS_URL`, `CHECKOUT_CANCEL_URL`, and `BILLING_CLAIM_TTL_SECONDS`
+
 ## Deploy To Render
+
+### Open the local dashboard
+
+The browser dashboard is in `frontend/`. From the repository root, start a
+local static server:
+
+```bash
+python -m http.server 4170 --directory frontend
+```
+
+Then open `http://localhost:4170`. The accounting dashboard uses browser storage
+for its local demo data.
 
 This repo now includes a [render.yaml](/C:/Users/Mathiwe/backend-foundations/render.yaml) file for a simple web-service deployment.
 
@@ -147,6 +274,7 @@ After deploy, open:
 
 ```text
 https://your-app.onrender.com/docs
+https://your-app.onrender.com/status
 ```
 
 To point the dashboard at production, update `API_URL` in [index.html](/C:/Users/Mathiwe/backend-foundations/frontend/index.html) to your Render URL.
@@ -155,7 +283,7 @@ To point the dashboard at production, update `API_URL` in [index.html](/C:/Users
 
 ##  Testing
 
-Automated unit tests cover the CLI, calculator logic, file tools, CSV tools, JSON tools, log tools, and finance summaries.
+Automated unit tests cover the CLI, calculator logic, file tools, CSV tools, JSON tools, log tools, finance summaries, and the accounting API.
 
 ```bash
 python -m unittest discover -s tests -p "test_*.py" -v
